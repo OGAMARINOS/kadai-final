@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Kadai</title>
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css'>
+<link rel='stylesheet' href='https://unpkg.com/@mdi/font@6.x/css/materialdesignicons.min.css'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900'>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>顧客一覧表</title>
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.5.10/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.5.10/dist/vuetify.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <v-app>
+      <v-content>
+        <v-container>
+          <v-row class="text-h3 mb-3 mt-3" justify="center">
+            顧客一覧表
+          </v-row>
+          <!-- データテーブルの部分 -->
+          <v-data-table :headers="headers" :items="dataList" class="elevation-1">
+            <template v-slot:top>
+              <v-toolbar flat>
+                <v-toolbar-title>顧客一覧表</v-toolbar-title>
+                <v-divider class="mx-4" inset vertical></v-divider>
+                <v-spacer></v-spacer>
+                <v-btn color="primary" @click="readData">データを表示</v-btn>
+                <v-btn color="success" @click="dialogNew = true">新規入力</v-btn>
+              </v-toolbar>
+            </template>
+            <template v-slot:item.actions="{ item }">
+              <v-btn color="blue" class="white--text" @click="openUpdateDialog(item)">更新</v-btn>
+              <v-btn color="red" class="white--text" @click="deleteData(item.ID)">削除</v-btn>
+            </template>
+          </v-data-table>
+          <!-- データテーブルの部分ここまで -->
+
+          <!-- 新規入力ダイアログ -->
+          <v-dialog v-model="dialogNew" max-width="500px">
+            <v-card>
+              <v-card-title>
+                <span class="headline">新規入力</span>
+              </v-card-title>
+              <v-card-text>
+                <v-container>
+                  <v-row>
+                    <v-col cols="12">
+                      <v-text-field v-model="ID" label="ID"></v-text-field>
+                    </v-col>
+                    <v-col cols="12">
+                      <v-text-field v-model="Name" label="名前"></v-text-field>
+                    </v-col>
+                    <v-col cols="12">
+                      <v-text-field v-model="age" label="年齢"></v-text-field>
+                    </v-col>
+                    <v-col cols="12">
+                      <v-text-field v-model="number" label="郵便番号"></v-text-field>
+                    </v-col>
+                    <v-col cols="12">
+                      <v-text-field v-model="adress" label="アドレス"></v-text-field>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="blue darken-1" text @click="dialogNew = false">キャンセル</v-btn>
+                <v-btn color="blue darken-1" text @click="addData">保存</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+
+          <!-- 更新ダイアログ -->
+          <v-dialog v-model="dialogUpdate" max-width="500px">
+            <v-card>
+              <v-card-title>
+                <span class="headline">更新</span>
+              </v-card-title>
+              <v-card-text>
+                <v-container>
+                  <v-row>
+                    <v-col cols="12">
+                      <v-text-field v-model="ID" label="ID" readonly></v-text-field>
+                    </v-col>
+                    <v-col cols="12">
+                      <v-text-field v-model="Name" label="名前"></v-text-field>
+                    </v-col>
+                    <v-col cols="12">
+                      <v-text-field v-model="age" label="年齢"></v-text-field>
+                    </v-col>
+                    <v-col cols="12">
+                      <v-text-field v-model="number" label="郵便番号"></v-text-field>
+                    </v-col>
+                    <v-col cols="12">
+                      <v-text-field v-model="adress" label="アドレス"></v-text-field>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="blue darken-1" text @click="dialogUpdate = false">キャンセル</v-btn>
+                <v-btn color="blue darken-1" text @click="updateData(ID)">保存</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+        </v-container>
+      </v-content>
+    </v-app>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
